@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
     services.xserver = {
         # Enable the X11 windowing system.
@@ -30,4 +31,8 @@
 
         desktopManager.gnome.enable = true;
     };
+
+    environment.systemPackages = with pkgs.gnomeExtensions; [
+        dash-to-dock
+    ];
 }
