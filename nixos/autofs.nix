@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
     services.autofs = {
         enable = true;
