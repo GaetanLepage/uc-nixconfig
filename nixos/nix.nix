@@ -1,4 +1,5 @@
 {
+    nixpkgs.config.allowUnfree = true;
 
     # Enable flake support
     nix = {
