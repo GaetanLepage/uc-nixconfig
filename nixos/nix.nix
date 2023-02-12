@@ -24,7 +24,6 @@
         flags = [
             "--update-input" "nixpkgs"
             "--no-write-lock-file"
-            "--option" "access-tokens" "github.com=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"
         ];
         allowReboot = true;
     };
