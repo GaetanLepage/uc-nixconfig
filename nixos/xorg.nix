@@ -17,9 +17,15 @@
         exportConfiguration = true;
 
         # Gnome
-        displayManager.gdm = {
-            enable = true;
-            autoSuspend = false;
+        displayManager = {
+            gdm = {
+                enable = true;
+                autoSuspend = false;
+            };
+            autoLogin = {
+                enable = true;
+                user = "uc";
+            };
         };
 
         desktopManager.gnome.enable = true;

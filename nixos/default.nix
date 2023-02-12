@@ -34,6 +34,8 @@
         };
         grub.enable = false;
 
+        timeout = 0;
+
         efi.canTouchEfiVariables = true;
     };
 

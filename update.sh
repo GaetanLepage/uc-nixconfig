@@ -13,11 +13,11 @@ nix flake update
 
 echo "=> Updating system"
 
-hostname=ultime-pc
+hostname=gaming
 
 nixos-rebuild switch \
     --verbose \
     --fast \
-    --flake .#${hostname} \
+    --flake .#ultime-pc \
     --target-host root@${hostname} \
     --build-host root@${hostname}
