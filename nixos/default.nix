@@ -7,6 +7,7 @@
         ./autofs.nix
         ./networking.nix
         ./nix.nix
+        ./security.nix
         ./ssh.nix
         ./users.nix
         ./xorg.nix
