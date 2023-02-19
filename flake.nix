@@ -14,6 +14,6 @@
       modules = [./nixos];
     };
 
-    formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
   };
 }
