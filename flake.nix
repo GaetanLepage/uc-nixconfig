@@ -1,14 +1,19 @@
 {
-    description = "Server configuration";
+  description = "Server configuration";
 
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    inputs.nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
-
-    outputs = { self, nixpkgs }:
-    {
-        nixosConfigurations.ultime-pc = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            modules = [ ./nixos ];
-        };
+  outputs = {
+    self,
+    nixpkgs,
+  }: let
+    system = "x86_64-linux";
+  in {
+    nixosConfigurations.ultime-pc = nixpkgs.lib.nixosSystem {
+      inherit system;
+      modules = [./nixos];
     };
+
+    formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+  };
 }
