@@ -6,14 +6,12 @@
   outputs = {
     self,
     nixpkgs,
-  }: let
-    system = "x86_64-linux";
-  in {
+  }: {
     nixosConfigurations.ultime-pc = nixpkgs.lib.nixosSystem {
-      inherit system;
+      system = "x86_64-linux";
       modules = [./nixos];
     };
 
-    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
   };
 }
