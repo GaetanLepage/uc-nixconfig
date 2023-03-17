@@ -20,12 +20,12 @@
   system.autoUpgrade = {
     enable = true;
     dates = "04:00";
-    flake = github:GaetanLepage/uc-nixconfig;
+    flake = "github:GaetanLepage/uc-nixconfig";
     flags = [
       "--update-input"
       "nixpkgs"
       "--no-write-lock-file"
     ];
-    allowReboot = true;
+    allowReboot = false;
   };
 }
