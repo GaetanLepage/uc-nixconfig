@@ -22,7 +22,7 @@
         program = let
           pkgs = import nixpkgs {inherit system;};
         in
-          toString (pkgs.writeScript "generate" ''
+          toString (pkgs.writeShellScript "generate" ''
             echo "=> Updating flake inputs"
             nix flake update
 
