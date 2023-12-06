@@ -6,23 +6,27 @@
   outputs = {
     self,
     nixpkgs,
-  }: let
+    flake-parts,
+  } @ inputs: let
     hostname = "ultime-pc";
-  in {
-    nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [./nixos];
-    };
+  in
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = nixpkgs.lib.systems.flakeExposed;
 
-    apps = let
-      system = "x86_64-linux";
-    in {
-      ${system}.default = {
-        type = "app";
-        program = let
-          pkgs = import nixpkgs {inherit system;};
-        in
-          toString (pkgs.writeShellScript "generate" ''
+      flake = {
+        nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [./nixos];
+        };
+      };
+
+      perSystem = {
+        pkgs,
+        system,
+        ...
+      }: {
+        packages.default = with pkgs;
+          writeShellScriptBin "update" ''
             echo "=> Updating flake inputs"
             nix flake update
 
@@ -33,10 +37,9 @@
                 --flake .#${hostname} \
                 --target-host root@gaming \
                 --build-host root@gaming
-          '');
+          '';
+
+        formatter = pkgs.alejandra;
       };
     };
-
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-  };
 }
