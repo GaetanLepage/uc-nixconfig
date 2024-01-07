@@ -1,6 +1,6 @@
-{
+{hostname, ...}: {
   networking = {
-    hostName = "ultime-pc";
+    hostName = hostname;
 
     # Pick only one of the below networking options.
     wireless.enable = false;

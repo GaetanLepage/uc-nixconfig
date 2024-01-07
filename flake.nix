@@ -8,7 +8,7 @@
     nixpkgs,
     flake-parts,
   } @ inputs: let
-    hostname = "ultime-pc";
+    hostname = "ultime-tv";
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = nixpkgs.lib.systems.flakeExposed;
@@ -17,6 +17,9 @@
         nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [./nixos];
+          specialArgs = {
+            inherit hostname;
+          };
         };
       };
 
