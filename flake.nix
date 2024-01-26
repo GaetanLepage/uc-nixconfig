@@ -38,8 +38,8 @@
                 --verbose \
                 --fast \
                 --flake .#${hostname} \
-                --target-host root@gaming \
-                --build-host root@gaming
+                --target-host root@tv \
+                --build-host root@tv
           '';
 
         formatter = pkgs.alejandra;
