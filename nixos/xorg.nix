@@ -1,17 +1,22 @@
 {pkgs, ...}: {
-  services.xserver = {
-    enable = true;
+  services = {
+    xserver = {
+      enable = true;
 
-    # Configure keymap
-    xkb.layout = "fr";
+      # Configure keymap
+      xkb.layout = "fr";
 
-    # Gnome
-    displayManager = {
-      gdm = {
+      # Gnome
+      displayManager.gdm = {
         enable = true;
         autoSuspend = false;
         wayland = true;
       };
+
+      desktopManager.gnome.enable = true;
+    };
+
+    displayManager = {
       # Force wayland session by default
       defaultSession = "gnome";
       autoLogin = {
@@ -19,8 +24,6 @@
         user = "uc";
       };
     };
-
-    desktopManager.gnome.enable = true;
   };
 
   # https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
